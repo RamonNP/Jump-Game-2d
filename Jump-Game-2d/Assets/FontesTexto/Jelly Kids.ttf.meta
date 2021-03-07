@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: ddc6f6e4ad2f5d1458e03d7f39f60131
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Jelly Kids
+  fontNames:
+  - Jelly Kids
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 917577febb777a34dbdce2a7f4408a2c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

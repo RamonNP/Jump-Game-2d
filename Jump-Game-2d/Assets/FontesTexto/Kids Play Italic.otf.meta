@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: 4e53be63b4e60524a8aecd75c6295b41
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Kids Play
+  fontNames:
+  - Kids Play
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: fa0f61c779082b540990f2128e0cd523, type: 3}
+  - {fileID: 12800000, guid: 03abaa69708eb31458e39291a2eccf4c, type: 3}
+  - {fileID: 12800000, guid: b5f3a89f5b8b369459aebf5faec53c67, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

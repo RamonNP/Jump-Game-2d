@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class PlataformaController : MonoBehaviour
 {
+    public  float PROXIMO_ESPACO = 16f;
+    public float espacoBackgGround = 16f;
+    public float espacoPlataforma = 1.5f;
     public List<GameObject> plataformas;
+    float yPlataforma = 0;
     // Start is called before the first frame update
     void Start()
     {
-        gerarPlataformas();
+        gerarPlataformas(12);
     }
 
     // Update is called once per frame
@@ -17,13 +21,13 @@ public class PlataformaController : MonoBehaviour
         
     }
 
-    public void gerarPlataformas() {
-        float y = 0;
-        for (int i = 0; i < 15; i++)
+    public void gerarPlataformas(int qtd) {
+        
+        for (int i = 0; i < qtd; i++)
         {
-            Instantiate (plataformaAleatoria(), new Vector3(0,y,0), this.gameObject.transform.rotation);
+            Instantiate (plataformaAleatoria(), new Vector3(0,yPlataforma,0), this.gameObject.transform.rotation);
             ;
-            y+=1.5f;
+            yPlataforma+=espacoPlataforma;
         }
     }
 
@@ -34,5 +38,12 @@ public class PlataformaController : MonoBehaviour
             i = Random.Range(0,5);
         }
         return plataformas[i];
+    }
+
+    public void criarProximoBackGround() {
+        espacoBackgGround += PROXIMO_ESPACO;
+        GameObject gobj =  Instantiate (GameObject.Find("BackGroundProximo"), new Vector3(0,espacoBackgGround,0), this.gameObject.transform.rotation);
+        gobj.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        gerarPlataformas(13);
     }
 }

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PADS
   - TRAPS
+  - BackGround
   layers:
   - Default
   - TransparentFX
@@ -48,4 +49,7 @@ TagManager:
     locked: 0
   - name: Personagem
     uniqueID: 642592991
+    locked: 0
+  - name: HUD
+    uniqueID: 1400654679
     locked: 0

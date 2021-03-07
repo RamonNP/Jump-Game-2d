@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 9d372615d0d861b4695a29253c931af1
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Dragon Ball
+  fontNames:
+  - Dragon Ball
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: f74ab452fa715d449ab757dde100650c, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

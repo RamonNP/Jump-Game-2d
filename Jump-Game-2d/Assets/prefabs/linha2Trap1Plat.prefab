@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 3929855834905044346}
   m_Layer: 8
   m_Name: Pad_1
-  m_TagString: TRAPS
+  m_TagString: PADS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -188,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3929855834905044345}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.9299998, y: -0.77, z: 6.751016}
+  m_LocalPosition: {x: -1.9299998, y: -0.889, z: 6.751016}
   m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_Children: []
   m_Father: {fileID: 2982438276045451750}
@@ -233,7 +233,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f39d29254a3b8ae4b951f4a961f257f9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cc253b829e92be0468db6ce1cd612ff4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -257,18 +257,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -0.23272097, y: 0.07743894}
+  m_Offset: {x: 0.00011229515, y: 0.07743894}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9, y: 4.34}
+    oldSize: {x: 8.86, y: 3.04}
     newSize: {x: 8.86, y: 3.04}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 5.0434246, y: 0.19054888}
+  m_Size: {x: 8.796158, y: 0.19054888}
   m_EdgeRadius: 0
 --- !u!251 &3929855834905044346
 PlatformEffector2D:
@@ -302,7 +302,7 @@ GameObject:
   - component: {fileID: 8663603439727502211}
   - component: {fileID: 7780599019358160918}
   m_Layer: 8
-  m_Name: Pad_3
+  m_Name: Trap_3
   m_TagString: TRAPS
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

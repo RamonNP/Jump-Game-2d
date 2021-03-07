@@ -11,6 +11,7 @@ public class CameraFollow : MonoBehaviour
    public float deltaY;
  
    public GameObject player;
+   public GameObject destroyObjetos;
    private float limiteY;
  
    void Start(){
@@ -27,5 +28,8 @@ public class CameraFollow : MonoBehaviour
         transform.position = new Vector3(0, posY, transform.position.z);
         limiteY = posY;
       }
+      //print(transform.position.y);
+      float ny = (transform.position.y - 16f);
+      destroyObjetos.transform.position = new Vector3(0, ny, transform.position.z);
    }
 }
