@@ -10,18 +10,21 @@ public class CameraFollow : MonoBehaviour
    public float smoothTimeX;
    public float deltaY;
  
-   public GameObject player;
+   private PlayerController player;
    public GameObject destroyObjetos;
    private float limiteY;
  
    void Start(){
-      player = GameObject.Find("Player");
+      player = FindObjectOfType(typeof(PlayerController)) as PlayerController;
       smoothTimeY = 0.2f;
       smoothTimeX = 0.2f;
       deltaY = 0.4f;
    }
  
    void FixedUpdate(){
+      /*if(player == null){
+         player = FindObjectOfType(typeof(PlayerController)) as PlayerController;
+      } */
       //float posX = Mathf.SmoothDamp(transform.position.x, player.transform.position.x, ref velocity.x, smoothTimeX);
       float posY = Mathf.SmoothDamp(transform.position.y, player.transform.position.y + deltaY, ref velocity.y, smoothTimeY);
       if(posY > limiteY) {

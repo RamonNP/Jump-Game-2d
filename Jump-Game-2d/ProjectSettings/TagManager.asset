@@ -7,6 +7,10 @@ TagManager:
   - PADS
   - TRAPS
   - BackGround
+  - COIN
+  - ESCUDO
+  - PULO
+  - VOAR
   layers:
   - Default
   - TransparentFX
