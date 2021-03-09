@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
    public float horizontalForceButton ;
  
    void Start () {
+      AdMobController.getInstance().RequestBanner();
       gameOverBoll = false;
       coins = AppDAO.getInstance().loadInt(AppDAO.COINS);
       animator = GetComponent<Animator>();
@@ -197,14 +198,8 @@ public class PlayerController : MonoBehaviour
        }
        personagemController.painelGameOver.SetActive(true);
        gameOverBoll = true;
+       AdMobController.getInstance().ShowInterstitial();
 
     }
-    public void restartCurrentScene(){
-         Scene scene = SceneManager.GetActiveScene(); 
-         SceneManager.LoadScene(scene.name);
-     }
     
-   public void jmenu() {
-        SceneManager.LoadSceneAsync("MenuPersonagem");
-    }
 }
