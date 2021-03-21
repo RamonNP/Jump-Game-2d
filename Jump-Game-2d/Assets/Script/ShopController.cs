@@ -46,14 +46,14 @@ public class ShopController : MonoBehaviour
         int moedas = AppDAO.getInstance().loadInt(AppDAO.COINS);
         if(personagem == 2){
             if(moedas > KOALA_PRECO) {
-                print("IMPLEMENTAR SOM COMPRA");
+                AudioController.getInstance().tocarFx(AudioController.getInstance().fxSell);
                 moedas = moedas - KOALA_PRECO;
                 AppDAO.getInstance().saveInt(AppDAO.COINS, moedas);
                 AppDAO.getInstance().saveInt(AppDAO.KOALA, 1);
                 verificaCompras();
                 txtMoedasShop.text = AppDAO.getInstance().loadInt(AppDAO.COINS).ToString().PadLeft(5, '0');
             } else {
-                print("IMPLEMENTAR SOM ERRO " + moedas);
+                AudioController.getInstance().tocarFx(AudioController.getInstance().fxError);
             }
 
         }
@@ -124,6 +124,7 @@ public class ShopController : MonoBehaviour
         }
     }
     public void jogar() {
+        AudioController.getInstance().tocarFx(AudioController.getInstance().fxClick);
         SceneManager.LoadSceneAsync("Fase1");
     }
 }

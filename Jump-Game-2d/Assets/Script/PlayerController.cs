@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -29,9 +29,12 @@ public class PlayerController : MonoBehaviour
  
    private bool gameOverBoll;
    public float horizontalForceButton ;
+   public Vector2 velocity;
+   public float smoothTimeX;
  
    void Start () {
-      AdMobController.getInstance().RequestBanner();
+      //AdMobController.getInstance().RequestBanner();
+      AudioController.getInstance().trocarMusica(AudioController.getInstance().musicaFase1);
       gameOverBoll = false;
       coins = AppDAO.getInstance().loadInt(AppDAO.COINS);
       animator = GetComponent<Animator>();
@@ -40,13 +43,73 @@ public class PlayerController : MonoBehaviour
       rb2d = GetComponent<Rigidbody2D>();
       //Inicializando hud modedas
       addCoins(0);
+      smoothTimeX = 0.2f;
+      print("Reiniciando");
    }
  
    void Update () {
       pontuacaoAltitude ();
       if(!gameOverBoll) {
-         move ();
+         //move ();
       }
+
+      Touch touch = simulatess();
+      if (Application.platform == RuntimePlatform.Android) {
+            try
+            {
+               touch = Input.GetTouch(0);//simulatess();//Input.GetTouch(0); SEM SIMULADOR
+            }
+            catch (System.Exception)
+            {
+               
+               //throw;
+            }
+      } else if (Application.platform == RuntimePlatform.OSXEditor) {
+            Input.GetTouch(0); 
+      }
+      switch (touch.phase)
+         {
+               case TouchPhase.Began:
+               MoveTouch(GetCurrentMousePosition(touch.position).GetValueOrDefault());
+               break;
+
+               case TouchPhase.Moved:
+               MoveTouch(GetCurrentMousePosition(touch.position).GetValueOrDefault());
+               break;
+
+               case TouchPhase.Ended:
+               velocity.y = 0f;
+               break;
+
+         }
+   }
+   private Touch simulatess()
+    {
+        Touch touch = new Touch();
+        if (Input.GetMouseButtonDown(0))
+        {
+            touch = new Touch();
+            touch.phase = TouchPhase.Began;
+            touch.position = Input.mousePosition;
+        } else if (Input.GetMouseButton(0))
+        {
+            touch = new Touch();
+            touch.phase = TouchPhase.Moved;
+            touch.position = Input.mousePosition;
+        } else if (Input.GetMouseButtonUp(0))
+        {
+            touch = new Touch();
+            touch.phase = TouchPhase.Ended;
+            touch.position = Input.mousePosition;
+        } else {
+            touch = new Touch();
+            touch.phase = TouchPhase.Canceled;
+        }
+        return touch;
+    }
+   public void MoveTouch(Vector3 releasePosition) {
+      float posx = Mathf.SmoothDamp(transform.position.x, releasePosition.x, ref velocity.y, smoothTimeX);
+      transform.position = new Vector3(posx, transform.position.y, transform.position.z);
    }
  
    void pontuacaoAltitude (){
@@ -64,6 +127,8 @@ public class PlayerController : MonoBehaviour
       //float horizontalForceButton = Input.acceleration.x;
       horizontalForceButton = diracao/2;
    }
+
+   
    void move(){
       //float horizontalForceButton = Input.acceleration.x;
       //horizontalForceButton = Input.GetAxis ("Horizontal");
@@ -100,6 +165,7 @@ public class PlayerController : MonoBehaviour
     }
     private void pular() {
        if(!gameOverBoll) {
+         AudioController.getInstance().tocarFx(AudioController.getInstance().fxJump);
          animator.SetTrigger("pulo");
          StartCoroutine("jumpPlataform");
          rb2d.AddForce(new Vector2(0, jumpForce));
@@ -142,36 +208,40 @@ public class PlayerController : MonoBehaviour
     }
 
     public void addCoins(int qtd) {
+       AudioController.getInstance().tocarFx(AudioController.getInstance().fxCoin);
        coins+=qtd;
        personagemController.txtMoedas.text = coins.ToString().PadLeft(5, '0');
        AppDAO.getInstance().saveInt(AppDAO.COINS, coins);
     }
    IEnumerator PoderEscudo() {
-         personagemController.imgPoderEscudo.SetActive(true);
-         objPoderEscudo.SetActive(true);
-         poderEscudo = true;
-         yield return new WaitForSeconds(20f);
-         objPoderEscudo.SetActive(false);
-         poderEscudo = false;
-         personagemController.imgPoderEscudo.SetActive(false);
+      AudioController.getInstance().tocarFx(AudioController.getInstance().fxShield);
+      personagemController.imgPoderEscudo.SetActive(true);
+      objPoderEscudo.SetActive(true);
+      poderEscudo = true;
+      yield return new WaitForSeconds(20f);
+      objPoderEscudo.SetActive(false);
+      poderEscudo = false;
+      personagemController.imgPoderEscudo.SetActive(false);
     }
    IEnumerator PoderVoar() {
-         personagemController.imgPoderVoar.SetActive(true);
-         objPoderEscudoVoar.SetActive(true);
-         poderEscudo = true;
-         rb2d.gravityScale = -0.2f;
-         animator.SetBool("voar", true);
-         poderVoar = true;
-         isGrounded = false;
-         yield return new WaitForSeconds(8f);
-         rb2d.gravityScale = 1f;
-         yield return new WaitForSeconds(2f);
-         objPoderEscudoVoar.SetActive(false);
-         poderEscudo = false;
-         isGrounded = true;
-         animator.SetBool("voar", false);
-         poderVoar = false;
-         personagemController.imgPoderVoar.SetActive(false);
+      AudioController.getInstance().tocarFx(AudioController.getInstance().fxFly);
+      AudioController.getInstance().tocarFx(AudioController.getInstance().fxShield);
+      personagemController.imgPoderVoar.SetActive(true);
+      objPoderEscudoVoar.SetActive(true);
+      poderEscudo = true;
+      rb2d.gravityScale = -0.2f;
+      animator.SetBool("voar", true);
+      poderVoar = true;
+      isGrounded = false;
+      yield return new WaitForSeconds(8f);
+      rb2d.gravityScale = 1f;
+      yield return new WaitForSeconds(2f);
+      objPoderEscudoVoar.SetActive(false);
+      poderEscudo = false;
+      isGrounded = true;
+      animator.SetBool("voar", false);
+      poderVoar = false;
+      personagemController.imgPoderVoar.SetActive(false);
     }
    IEnumerator PoderPulo() {
          personagemController.imgPoderPulor.SetActive(true);
@@ -192,14 +262,30 @@ public class PlayerController : MonoBehaviour
         isGrounded = true;
     }
     public void gameOver() {
+       //AdMobController.getInstance().ShowInterstitial();
+       AudioController.getInstance().tocarFx(AudioController.getInstance().fxLose);
        int record = AppDAO.getInstance().loadInt(AppDAO.SCORE_TOTAL);
        if(record < altitude) {
           AppDAO.getInstance().saveInt(AppDAO.SCORE_TOTAL, altitude);
        }
        personagemController.painelGameOver.SetActive(true);
        gameOverBoll = true;
-       AdMobController.getInstance().ShowInterstitial();
 
+    }
+
+    private Vector3? GetCurrentMousePosition(Vector3 pos)
+    {
+        var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        var plane = new Plane(Vector3.forward, Vector3.zero);
+
+        float rayDistance;
+        if (plane.Raycast(ray, out rayDistance))
+        {
+            return ray.GetPoint(rayDistance);
+            
+        }
+
+        return null;
     }
     
 }
