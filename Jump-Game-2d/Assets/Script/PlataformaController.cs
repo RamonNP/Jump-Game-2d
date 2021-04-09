@@ -71,7 +71,7 @@ public class PlataformaController : MonoBehaviour
     }
 
     private GameObject plataformaAleatoria() {
-        int i = Random.Range(0,5);
+        int i = Random.Range(0,plataformas.Count);
         return plataformas[i];
     }
 

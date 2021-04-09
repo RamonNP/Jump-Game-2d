@@ -32,8 +32,8 @@ public class ShopController : MonoBehaviour
         txtUPAShop.text = AppDAO.getInstance().loadInt(AppDAO.SCORE_TOTAL).ToString().PadLeft(5, '0');
         //AppDAO.getInstance().saveInt(AppDAO.COINS, 10000);
         AppDAO.getInstance().saveInt(AppDAO.COELHO, 1);
-        AppDAO.getInstance().saveInt(AppDAO.KOALA, 0);
-        AppDAO.getInstance().saveInt(AppDAO.RAPOZA, 0);
+        //AppDAO.getInstance().saveInt(AppDAO.KOALA, 0);
+        //AppDAO.getInstance().saveInt(AppDAO.RAPOZA, 0);
         verificaCompras();
     }
 
@@ -59,14 +59,14 @@ public class ShopController : MonoBehaviour
         }
         if(personagem == 3){
             if(moedas > RAPOZA_PRECO) {
-                print("IMPLEMENTAR SOM COMPRA");
+                AudioController.getInstance().tocarFx(AudioController.getInstance().fxSell);
                 moedas = moedas - RAPOZA_PRECO;
                 AppDAO.getInstance().saveInt(AppDAO.COINS, moedas);
                 AppDAO.getInstance().saveInt(AppDAO.RAPOZA, 1);
                 verificaCompras();
                 txtMoedasShop.text = AppDAO.getInstance().loadInt(AppDAO.COINS).ToString().PadLeft(5, '0');
             } else {
-                print("IMPLEMENTAR SOM ERRO " + moedas);
+                AudioController.getInstance().tocarFx(AudioController.getInstance().fxError);
             }
 
         }

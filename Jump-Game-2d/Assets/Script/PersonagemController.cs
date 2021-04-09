@@ -41,6 +41,7 @@ public class PersonagemController : MonoBehaviour
      }
     
    public void jmenu() {
+        //AdMobController.getInstance().DestroyBanner();
         SceneManager.LoadSceneAsync("MenuPersonagem");
     }
 

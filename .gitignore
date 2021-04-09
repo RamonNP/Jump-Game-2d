@@ -60,3 +60,5 @@ crashlytics-build.properties
 
 Jump-Game-2d/Library/*
 Jump-Game-2d/Temp/*
+Jump-Game-2d/Assets/GoogleMobileAds/*
+Jump-Game-2d/Assets/Plugins/*

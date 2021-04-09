@@ -5,6 +5,7 @@ using UnityEngine;
 public class AppDAO : MonoBehaviour
 {
     public static AppDAO instance;
+    public static string RATE = "rate";
     public static string FASE = "Fase";
     public static string ESTRLA_FASES = "EstrelasFase";
     public static string SCORE_TOTAL = "ScoreTotal";

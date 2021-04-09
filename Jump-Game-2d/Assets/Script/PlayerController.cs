@@ -33,7 +33,8 @@ public class PlayerController : MonoBehaviour
    public float smoothTimeX;
  
    void Start () {
-      //AdMobController.getInstance().RequestBanner();
+      AdMobController.getInstance().DestroyBanner();
+      AdMobController.getInstance().RequestBanner();
       AudioController.getInstance().trocarMusica(AudioController.getInstance().musicaFase1);
       gameOverBoll = false;
       coins = AppDAO.getInstance().loadInt(AppDAO.COINS);
@@ -262,7 +263,6 @@ public class PlayerController : MonoBehaviour
         isGrounded = true;
     }
     public void gameOver() {
-       //AdMobController.getInstance().ShowInterstitial();
        AudioController.getInstance().tocarFx(AudioController.getInstance().fxLose);
        int record = AppDAO.getInstance().loadInt(AppDAO.SCORE_TOTAL);
        if(record < altitude) {
@@ -270,6 +270,8 @@ public class PlayerController : MonoBehaviour
        }
        personagemController.painelGameOver.SetActive(true);
        gameOverBoll = true;
+       AdMobController.getInstance().ShowInterstitial();
+       //AdMobController.getInstance().DestroyBanner();
 
     }
 
