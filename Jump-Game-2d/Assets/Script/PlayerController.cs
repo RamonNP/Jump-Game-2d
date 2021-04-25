@@ -138,6 +138,12 @@ public class PlayerController : MonoBehaviour
  
 
  
+      //if (jump) {
+      //  rb2d.AddForce(new Vector2(0, jumpForce));
+      //   jump = false;
+      //}
+   }
+   public void JumpAnimator() {
       if (jump) {
          rb2d.AddForce(new Vector2(0, jumpForce));
          jump = false;
